@@ -64,6 +64,7 @@ certbot certonly --webroot -w /var/www/html -d xakep1.anilibria.tv -m admin@anil
 
 <hr/>
 Редактируем `/etc/nginx/nginx.conf`
+
 ```
 worker_processes auto; # изменяем кол-во процессов
 worker_rlimit_nofile 65535; # увеличиваем open file limit
