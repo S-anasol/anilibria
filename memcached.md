@@ -39,7 +39,7 @@ chown anilibria:www-data /var/www/anilibria/root/bitrix/.settings_extra.php
 ```
 <hr>
 
-Сохраняем <a href="http://php.net/manual/ru/memcached.sessions.php">php сессии в memcached</a>.
+Сохраняем <a href="http://php.net/manual/ru/memcached.sessions.php">php сессии в memcached</a>. Редактируем >a href="https://github.com/poiuty/anilibria/blob/master/conf/php_pool_anilibria.conf">fpm pool anilibria.conf</a>
 ```
 # nano /etc/php5/fpm/pool.d/anilibria.conf
 php_admin_value[session.save_handler] = memcache
