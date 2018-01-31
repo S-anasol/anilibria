@@ -63,10 +63,10 @@ certbot certonly --webroot -w /var/www/html -d xakep1.anilibria.tv -m admin@anil
 ```
 
 <hr/>
-Конфиг <a href="https://github.com/poiuty/anilibria/blob/master/conf/nginx_caching_proxy.conf">/etc/nginx/nginx.conf</a>
+Конфиг <a href="https://github.com/poiuty/anilibria/blob/master/conf/nginx_caching_proxy.conf">/etc/nginx/nginx.conf</a><br/>
 
-Настройка `proxy_cache_min_uses` задаёт число запросов, после которого ответ будет закэширован.<br/>
-Позволяет значительно снизить нагрузку на диск.
+`proxy_cache_min_uses` задаёт число запросов, после которого ответ будет закэширован. Позволяет значительно снизить нагрузку на диск.
+
 
 ```
 proxy_cache_min_uses 1;
