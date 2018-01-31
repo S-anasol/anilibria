@@ -63,6 +63,34 @@ certbot certonly --webroot -w /var/www/html -d xakep1.anilibria.tv -m admin@anil
 ```
 
 <hr/>
+Редактируем `/etc/nginx/nginx.conf`
+```
+worker_processes auto; # изменяем кол-во процессов
+worker_rlimit_nofile 65535; # увеличиваем open file limit
+
+events {
+	worker_connections 32768; 
+	accept_mutex off; отключаем accept_mutex
+	use epoll; # the effective method, used on Linux 2.6+
+}
+
+http {
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+  keepalive_timeout 30;
+  server_tokens off;
+  
+  ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+	ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+	ssl_prefer_server_ciphers on;
+	ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA512:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:ECDH+AESGCM:ECDH+AES256:DH+AESGCM:DH+AES256:RSA+AESGCM:!aNULL:!eNULL:!LOW:!RC4:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+	ssl_session_cache shared:TLS:128m;
+
+```
+
+
+<hr/>
 
 Настройка `proxy_cache_min_uses` позволяет снизить нагрузку на диск.
 ```
