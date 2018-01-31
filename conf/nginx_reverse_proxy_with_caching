@@ -1,0 +1,57 @@
+server {
+	listen 85;
+	keepalive_timeout 30;
+	root /var/cache/munin/www/;
+	location /munin/static/ {
+		alias /etc/munin/static/;
+	}
+	location ^~ /munin-cgi/munin-cgi-graph/ {
+		access_log off;
+		fastcgi_split_path_info ^(/munin-cgi/munin-cgi-graph)(.*);
+		fastcgi_param PATH_INFO $fastcgi_path_info;
+		fastcgi_pass unix:/var/run/munin/fcgi-graph.sock;
+		include fastcgi_params;
+	}
+}
+
+server { # caching reverse proxy
+	listen 		 80;
+	listen 		 443 ssl http2;
+	server_name   xakep1.anilibria.tv;
+	ssl_certificate /etc/letsencrypt/live/xakep1.anilibria.tv/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/xakep1.anilibria.tv/privkey.pem;
+	access_log off;
+	location ~*  \.(m3u8|ts)$ {                 
+		access_log /var/log/nginx/cache-access.log cache;
+		proxy_pass             http://x.anilibria.tv;
+		proxy_cache            STATIC;
+		proxy_cache_valid      404 302  1m;
+		proxy_cache_valid      200      1y;
+		proxy_ignore_headers Set-Cookie Expires Cache-Control;
+		proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;
+		
+		proxy_cache_lock on;
+		proxy_cache_min_uses 3; # reduce disk load
+		proxy_cache_revalidate on;
+		proxy_temp_path /var/www/cache/proxy_temp 1 2;
+
+		# clean cache curl https://xakep1.anilibria.tv/videos/ts/4576/0001/fff1.ts -s -I -H "ded334209c901fe8c90c9ca08c8aa86c:true"
+		proxy_cache_bypass $http_ded334209c901fe8c90c9ca08c8aa86c;
+	
+		add_header X-Cache-Status $upstream_cache_status; # show cache status
+		# dont block process
+		# https://img.poiuty.com/img/08/e75c6adde3ee57e4bff48a3bc0b70908.png
+		# https://img.poiuty.com/img/1d/adbe5915344c83528f0b1a6bbac2951d.png
+		# https://nginx.org/ru/docs/http/ngx_http_core_module.html#aio
+		# https://habrahabr.ru/post/260669/
+		aio	threads;
+		aio_write on;
+		sendfile_max_chunk 512k;
+	}
+	location /.well-known/ { # letsencrypt
+		root /var/www/html;
+	}
+	location / {
+		return 403;
+	}
+}
