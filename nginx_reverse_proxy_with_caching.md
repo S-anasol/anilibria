@@ -90,4 +90,10 @@ nvme0n1           0.00    41.20  322.90   42.20 33559.60  3074.80   200.68     2
 AVG %util (11.08+12.28+11.64+9.96+12.08)/5 = 11.408
 ```
 
+<a href="https://stackoverflow.com/questions/26399776/proxy-cache-min-uses-time-window">proxy_cache_min_uses time window</a><br/>
+`proxy_cache_min_uses` just counts the number of requests after which the response from upstream will be cached.
+
+Requests are evicted from cache when they are not accessed within an expiration time or when the size of the cache exceeds a max value (using LRU algorithm). You can tune the proxy cache via the <a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path">proxy_cache_path</a> directive (<a href="http://nginx.com/resources/admin-guide/caching/">here</a> a nice doc with examples).
+
+
 
