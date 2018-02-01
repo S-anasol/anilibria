@@ -79,6 +79,12 @@ x-cache-status: MISS
 x-cache-status: HIT
 ```
 
+За удаление файла из кеша - отвечает настройка proxy_cache_bypass в конфиге nginx.<br/>
+Чтобы удалить - отправим запрос => ded334209c901fe8c90c9ca08c8aa86c secret cookie.
+```
+curl https://xakep1.anilibria.tv/videos/ts/4576/0001/fff1.ts -s -I -H "ded334209c901fe8c90c9ca08c8aa86c:true"
+```
+
 <hr/>
 
 `proxy_cache_min_uses` задаёт число запросов, после которого ответ будет закэширован. Временное окно зависит от настройки proxy_cache_path keys_zone и inactive.
