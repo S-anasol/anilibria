@@ -70,7 +70,7 @@ wget https://raw.githubusercontent.com/poiuty/anilibria/master/conf/nginx_cachin
 
 Проверим что cache работает.
 ```
-# первый запрос => файл попадает в cache
+# после трех запросов => файл попадает в cache
 # curl https://xakep1.anilibria.tv/videos/ts/5223/0001/fff31.ts -s -I | grep x-cache-status
 x-cache-status: MISS
 
