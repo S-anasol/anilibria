@@ -80,7 +80,7 @@ x-cache-status: HIT
 ```
 
 За удаление файла из кеша - отвечает настройка proxy_cache_bypass в конфиге nginx.<br/>
-Чтобы удалить - отправим запрос => ded334209c901fe8c90c9ca08c8aa86c secret cookie.
+Чтобы удалить - отправим запрос => `ded334209c901fe8c90c9ca08c8aa86c` secret cookie.
 ```
 curl https://xakep1.anilibria.tv/videos/ts/4576/0001/fff1.ts -s -I -H "ded334209c901fe8c90c9ca08c8aa86c:true"
 ```
