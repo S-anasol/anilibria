@@ -2,7 +2,7 @@
 apt-get install fail2ban
 ```
 
-Редактируем файл `/etc/fail2ban/jail.conf`, включаем мониторинг для `ssh` и `pure-ftpd`
+Редактируем файл `/etc/fail2ban/jail.conf`, включаем мониторинг `ssh` и `pure-ftpd`
 
 ```
 [ssh]
