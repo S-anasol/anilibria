@@ -41,7 +41,7 @@ root@5.9.82.141's password:
 Permission denied (publickey,password).
 ```
 
-На седьмой раз - fail2ban блокирует коннект.
+Fail2ban блокирует коннект.
 ```
 # ssh root@5.9.82.141
 ssh: connect to host 5.9.82.141 port 22: Connection refused
