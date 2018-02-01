@@ -68,6 +68,17 @@ wget https://raw.githubusercontent.com/poiuty/anilibria/master/conf/nginx_cachin
 /etc/init.d/nginx restart
 ```
 
+Проверим что cache работает.
+```
+# первый запрос => файл попадает в cache
+# curl https://xakep1.anilibria.tv/videos/ts/5223/0001/fff31.ts -s -I | grep x-cache-status
+x-cache-status: MISS
+
+# HIT => кеш работает.
+# curl https://xakep1.anilibria.tv/videos/ts/5223/0001/fff31.ts -s -I | grep x-cache-status
+x-cache-status: HIT
+```
+
 <hr/>
 
 `proxy_cache_min_uses` задаёт число запросов, после которого ответ будет закэширован. Временное окно зависит от настройки proxy_cache_path keys_zone и inactive.
