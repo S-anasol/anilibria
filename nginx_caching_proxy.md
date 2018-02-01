@@ -129,6 +129,7 @@ AVG %util (11.08+12.28+11.64+9.96+12.08)/5 = 11.408
 /dev/nvme0n1p1          459G  406G   30G  94% /var/www/cache
 ``` 
 Изменяем `proxy_temp_path`
+
 ```
 http {
 	...
