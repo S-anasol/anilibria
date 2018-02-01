@@ -24,6 +24,8 @@ xakep1 A 109.248.206.13 # YALOCO  [PROXY]
 x      A 5.9.82.141     # HETZNER [MAIN]
 ```
 
+Действия выполняются на Debian 9, nginx nginx/1.10.3, конфиг <a href="https://github.com/poiuty/anilibria/blob/master/conf/nginx_caching_proxy.conf">/etc/nginx/nginx.conf</a>.
+
 Устанавливаем пакеты.
 ```
 apt-get update && apt-get upgrade -y
@@ -62,8 +64,13 @@ certbot certonly --webroot -w /var/www/html -d xakep1.anilibria.tv -m admin@anil
 # /etc/init.d/cron restart
 ```
 
+Скачиваем конфиг, перезагружаем nginx.
+```
+wget https://raw.githubusercontent.com/poiuty/anilibria/master/conf/nginx_caching_proxy.conf -O /etc/nginx/nginx.conf
+/etc/init.d/nginx restart
+```
+
 <hr/>
-Конфиг <a href="https://github.com/poiuty/anilibria/blob/master/conf/nginx_caching_proxy.conf">/etc/nginx/nginx.conf</a><br/>
 
 `proxy_cache_min_uses` задаёт число запросов, после которого ответ будет закэширован. Временное окно зависит от настройки proxy_cache_path keys_zone и inactive.
 
@@ -95,6 +102,3 @@ nvme0n1           0.00    41.20  322.90   42.20 33559.60  3074.80   200.68     2
 
 AVG %util (11.08+12.28+11.64+9.96+12.08)/5 = 11.408
 ```
-
-
-
