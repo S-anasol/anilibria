@@ -87,8 +87,7 @@ curl https://xakep1.anilibria.tv/videos/ts/4576/0001/fff1.ts -s -I -H "ded334209
 
 <hr/>
 
-`proxy_cache_min_uses` задаёт число запросов, после которого ответ будет закэширован. Временное окно зависит от настройки proxy_cache_path keys_zone и inactive.
-
+`proxy_cache_min_uses` задаёт число запросов, после которого ответ будет закэширован. <a href="https://stackoverflow.com/questions/26399776/proxy-cache-min-uses-time-window">Временное окно</a> зависит от настройки proxy_cache_path `keys_zone`, `max_size` и `inactive`. Вытесняются из кеша, если нет обращений > `inactive time` или когда размер кеша превышает максимальное значение (алгоритм LRU).
 
 Позволяет значительно снизить нагрузку на диск.
 
