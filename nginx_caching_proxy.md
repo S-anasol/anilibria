@@ -15,6 +15,11 @@ Disk space: 500GB
 Network: 250Mbit/s
 ```
 
+1. Откройте <a href="https://github.com/poiuty/anilibria/issues">issues</a>, напишите IP адрес и конфиг вашего сервера.<br/> 
+2. Создаем поддомен.<br/>
+3. Настройте cache proxy, сгенерируйте secret cookie (proxy_cache_bypass), отправьте на почту lupin@anilibria.tv<br/>
+4. Проверяем, если ок - добавляем ваш сервер.<br/>
+
 <hr/>
 
 Создаем поддомен.
