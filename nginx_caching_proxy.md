@@ -24,9 +24,7 @@ xakep1 A 109.248.206.13 # YALOCO  [PROXY]
 x      A 5.9.82.141     # HETZNER [MAIN]
 ```
 
-Действия выполняются на Debian 9, nginx nginx/1.10.3, конфиг <a href="https://github.com/poiuty/anilibria/blob/master/conf/nginx_caching_proxy.conf">/etc/nginx/nginx.conf</a>.
-
-Устанавливаем пакеты.
+Действия выполняются на Debian 9, устанавливаем пакеты.
 ```
 apt-get update && apt-get upgrade -y
 apt-get install nginx munin munin-node certbot spawn-fcgi libcgi-fast-perl htop bwm-ng strace lsof libfile-readbackwards-perl
@@ -64,7 +62,7 @@ certbot certonly --webroot -w /var/www/html -d xakep1.anilibria.tv -m admin@anil
 # /etc/init.d/cron restart
 ```
 
-Скачиваем конфиг, перезагружаем nginx.
+Скачиваем конфиг <a href="https://github.com/poiuty/anilibria/blob/master/conf/nginx_caching_proxy.conf">/etc/nginx/nginx.conf</a>, перезагружаем nginx.
 ```
 wget https://raw.githubusercontent.com/poiuty/anilibria/master/conf/nginx_caching_proxy.conf -O /etc/nginx/nginx.conf
 /etc/init.d/nginx restart
