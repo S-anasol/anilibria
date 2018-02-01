@@ -140,3 +140,12 @@ location ~*  \.(m3u8|ts)$ {
 	proxy_temp_path /var/www/cache/proxy_temp 1 2;
 	...
 ```
+
+<hr/>
+
+Nginx: <a href="https://nginx.ru/ru/docs/">документация</a>.<br/>
+<a href="https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/">Reverse Proxy with Caching</a>.<br/>
+<a href="https://www.nginx.com/blog/nginx-caching-guide/">A Guide to Caching with NGINX and NGINX Plus</a>.<br/>
+<a href="https://habrahabr.ru/post/260669/">Пулы потоков</a>: ускоряем NGINX в 9 и более раз.<br/>
+Увеличиваем производительность с помощью <a href="https://habrahabr.ru/post/259403/">SO_REUSEPORT в NGINX 1.9.1</a><br/>
+
